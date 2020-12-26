@@ -1,4 +1,7 @@
-﻿# AndPermission
+# 修复：弹出授权中对话框过程中崩溃的问题；
+`Unable to add window -- token android.os.BinderProxy@3892b15 is not valid; is your activity running?`
+
+# AndPermission
 1. Request for runtime permissions.  
 2. Share private files.  
 3. Request to install unknown source apk.  
