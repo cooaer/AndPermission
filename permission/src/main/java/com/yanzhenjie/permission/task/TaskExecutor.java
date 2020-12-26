@@ -15,6 +15,7 @@
  */
 package com.yanzhenjie.permission.task;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -39,7 +40,15 @@ public abstract class TaskExecutor<T> extends AsyncTask<Void, Void, T> {
     @Override
     protected final void onPreExecute() {
         if (!mDialog.isShowing()) {
-            mDialog.show();
+            //fix : Unable to add window -- token android.os.BinderProxy is not valid; is your activity running?
+            Activity ownerActivity = mDialog.getOwnerActivity();
+            if (ownerActivity != null && !ownerActivity.isFinishing()) {
+                try {
+                    mDialog.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
